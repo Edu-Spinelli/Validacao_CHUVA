@@ -14,7 +14,8 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
-        composer install -n --prefer-dist
+        composer install --ignore-platform-reqs
+
 
     - name: Run Psalm
       run: |
@@ -29,7 +30,8 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
-        composer install -n --prefer-dist
+        ccomposer install --ignore-platform-reqs
+
 
     - name: Configure PHPCS
       run: |
@@ -49,7 +51,8 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
-        composer install -n --prefer-dist
+        composer install --ignore-platform-reqs
+
 
     - name: Configure PHPCS
       run: |
