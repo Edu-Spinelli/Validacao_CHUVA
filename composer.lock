@@ -159,58 +159,7 @@
             },
             "time": "2023-01-05T11:28:13+00:00"
         },
-        {
-            "name": "drupal/coder",
-            "version": "8.3.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pfrenssen/coder.git",
-                "reference": "496c1301961ffecc129db3d4327a5ee63c51eb34"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pfrenssen/coder/zipball/496c1301961ffecc129db3d4327a5ee63c51eb34",
-                "reference": "496c1301961ffecc129db3d4327a5ee63c51eb34",
-                "shasum": ""
-            },
-            "require": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1 || ^1.0.0",
-                "ext-mbstring": "*",
-                "php": ">=7.2",
-                "sirbrillig/phpcs-variable-analysis": "^2.11.7",
-                "slevomat/coding-standard": "^8.11",
-                "squizlabs/php_codesniffer": "^3.7.1",
-                "symfony/yaml": ">=3.4.0"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^1.7.12",
-                "phpunit/phpunit": "^8.0"
-            },
-            "default-branch": true,
-            "type": "phpcodesniffer-standard",
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\": "coder_sniffer/Drupal/",
-                    "DrupalPractice\\": "coder_sniffer/DrupalPractice/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Coder is a library to review Drupal code.",
-            "homepage": "https://www.drupal.org/project/coder",
-            "keywords": [
-                "code review",
-                "phpcs",
-                "standards"
-            ],
-            "support": {
-                "issues": "https://www.drupal.org/project/issues/coder",
-                "source": "https://www.drupal.org/project/coder"
-            },
-            "time": "2024-02-24T07:55:14+00:00"
-        },
+        
         {
             "name": "phpstan/phpdoc-parser",
             "version": "1.28.0",
