@@ -14,6 +14,7 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
+        composer update;
         composer install --ignore-platform-reqs
 
 
@@ -30,6 +31,7 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
+        composer update;
         ccomposer install --ignore-platform-reqs
 
 
@@ -51,6 +53,7 @@ jobs:
     - name: Installs composer
       run: |
         cd php;
+        composer update;
         composer install --ignore-platform-reqs
 
 
