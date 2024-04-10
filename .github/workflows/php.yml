@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Validate composer.json and composer.lock
-      run: composer validate --no-check-lock --no-check-public --strict composer.json
+      run: composer validate --no-check-publish --strict  composer.json
 
   
 
