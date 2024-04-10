@@ -17,20 +17,16 @@ class Scrapper
     $div_webscrapi = new DOMDocument;
     $titulos = array(); //feito
     $id = array(); //feito
-    $nome_inst = array(); //feito
     $autores = array(); //feito
     $tipo = array(); //feitocd
-
-    $xpath =  new DOMXPath($html_chuvaa);
-    $nodes = $xpath->query('//a[@class="paper-card p-lg bd-gradient-left"]');
-
-
+    
     $divs = $html_chuvaa->getElementsByTagName('div');
 
     if ($divs->length === 0) {
       return [];
     }
 
+    
     foreach ($divs as $div) {
       if ($div->getAttribute('class') === 'col-sm-12 col-md-8 col-lg-8 col-md-pull-4 col-lg-pull-4') {
         // Aqui você pode manipular os elementos dentro da div conforme necessário

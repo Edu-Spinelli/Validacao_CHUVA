@@ -19,15 +19,7 @@
         "box/spout": "3.3.0",
         "drupal/coder": "8.3.x-dev"
     },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
     "require-dev": {
         "phpunit/phpunit": "10.5.x-dev"
     }
-    
-   
-
 }
