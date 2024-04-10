@@ -2,13 +2,30 @@
 
 require __DIR__ .'/../../vendor/autoload.php';
 
-use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
-use Box\Spout\Common\Entity\Row;
+use \Box\Spout\Writer\Common\Creator\WriterEntityFactory;
+use \Box\Spout\Common\Entity\Row;
+use Box\Spout\Common\Entity\Style\Color;
+use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
+use Box\Spout\Common\Entity\Style\CellAlignment;
 
 
 $writer = WriterEntityFactory::createXLSXWriter();
 
 $writer->openToFile('teste.xlsx');
+
+
+
+$style_head = (new StyleBuilder())
+           ->setFontBold()
+           ->setFontSize(10)
+           ->setFontName('Arial')
+           ->build();
+
+$style_all = (new StyleBuilder())
+            ->setFontSize(10)
+            ->setFontName('Arial')
+            ->build();
+
 
 $cells = [
     WriterEntityFactory::createCell('ID'),
@@ -51,17 +68,28 @@ $cells = [
 ];
 
 
-$singleRow = WriterEntityFactory::createRow($cells);
+$singleRow = WriterEntityFactory::createRow($cells, $style_head);
 $writer->addRow($singleRow);
 
 
 
 
 
-$conteudo = file_get_contents("origin.html");
-$html_chuva = new DOMDocument();
-@$html_chuva->loadHTML($conteudo); // @FAZ ignorar os warings
+$conteudo = file_get_contents(__DIR__ . '/../../assets/origin.html');
+print_r($conteudo);
+$conteudo_utf8 = mb_convert_encoding($conteudo, 'UTF-8', mb_detect_encoding(__DIR__ . '/../../assets/origin.html', 'UTF-8, ISO-8859-1, ISO-8859-15', true));
+libxml_use_internal_errors(true); // Ignora erros de HTML mal formado
 
+$html_chuva = new DOMDocument();
+
+if ($html_chuva->loadHTML($conteudo_utf8) === false) {
+    echo "Erro ao carregar o HTML.";
+} else {
+    echo "HTML carregado com sucesso.";
+}
+
+
+$html_chuva->saveHTML();
 libxml_clear_errors();
 
 $titulos = array(); //feito
@@ -83,13 +111,15 @@ foreach ($divs as $div) {
 $html_div_webscrap = $html_chuva->saveHTML($div_webscrap); // Até aqui funfando
 
 
-$hyperlinks = new DOMDocument();
-@$hyperlinks->loadHTML($html_div_webscrap);
+
+$hyperlinks = new DOMDocument('1.0', 'utf-8');
+@$hyperlinks->loadHTML(mb_encode_numericentity($html_div_webscrap, [0x80, 0x10FFFF, 0, ~0], 'UTF-8'));
 
 
 // Pega os titulos e armazena no array $titulos
 foreach ($hyperlinks->getElementsByTagName('h4') as $link) { 
   array_push($titulos, $link->textContent); 
+  mb_convert_encoding($titulos, 'UTF-8');
 }
 
 //pega os ids e armazena no array $id
@@ -108,7 +138,9 @@ foreach ($hyperlinks->getElementsByTagName('div') as $div) {
         foreach ($spans as $span) {
             // Obtém o título e o valor do nó do span
             $instituicao = $span->getAttribute('title');
+            mb_convert_encoding($instituicao, 'UTF-8');
             $nome_autor = $span->nodeValue;
+            mb_convert_encoding($nome_autor, 'UTF-8');
             
             // Concatena o título e o nome do autor em uma única string
             $info_autor = $nome_autor . ',' . $instituicao;
@@ -140,7 +172,11 @@ for ($i = 0; $i < 62; $i++) {
     for ($j = 0; $j < 17; $j++) {
         $authorInfo = explode(';', $autores[$i][$j]);
         $authorName[$i][$j] = $authorInfo[0];
+        
         $authorInstitution[$i][$j] = $authorInfo[1];
+        // Extrair uma parte da string começando do segundo caractere
+        $authorInstitution[$i][$j] = substr($authorInstitution[$i][$j], 1);
+
     }
 
     
@@ -187,7 +223,7 @@ for ($i = 0; $i < 62; $i++) {
     ];
 
     // Adiciona a linha à planilha
-    $writer->addRow(WriterEntityFactory::createRowFromArray($rowData));
+    $writer->addRow(WriterEntityFactory::createRowFromArray($rowData, $style_all));
 }
 
 
@@ -195,7 +231,7 @@ $writer->close();
 
 
 
-print_r($autores);
+
 //print_r($titulos);
 //print_r($tipo);
 //print_r($id);
