@@ -19,7 +19,7 @@ class Scrapper
     $id = array(); //feito
     $nome_inst = array(); //feito
     $autores = array(); //feito
-    $tipo = array(); //feito
+    $tipo = array(); //feitocd
 
     $xpath =  new DOMXPath($html_chuvaa);
     $nodes = $xpath->query('//a[@class="paper-card p-lg bd-gradient-left"]');
@@ -100,8 +100,8 @@ class Scrapper
       }
 
 
-      if ($tst = 0) {
-        # code...
+     
+        
 
         $papers[] = new Paper(
           $id[$i],
@@ -127,7 +127,7 @@ class Scrapper
             new Person($authorName[$i][16], $authorInstitution[$i][16])
           ]
         );
-      } 
+      
     }
 
     return $papers;
