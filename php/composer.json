@@ -17,8 +17,6 @@
         "psalm/phar": "^4.7",
         "ext-zip": "*",
         "box/spout": "3.3.0"
-        
-     
     },
     "config": {
         "allow-plugins": {
