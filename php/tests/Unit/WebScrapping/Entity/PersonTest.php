@@ -4,6 +4,7 @@ namespace Chuva\Tests\Unit\WebScrapping\WebScrapping\Entity;
 
 use Chuva\Php\WebScrapping\Entity\Person;
 use PHPUnit\Framework\TestCase;
+require __DIR__ .'/../../../../vendor/autoload.php';
 
 /**
  * Tests requirements for Person.

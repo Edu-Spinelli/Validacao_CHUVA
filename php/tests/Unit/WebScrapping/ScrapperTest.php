@@ -1,6 +1,7 @@
 <?php
 
 namespace Chuva\Tests\Unit\WebScrapping\WebScrapping;
+require __DIR__ .'/../../../vendor/autoload.php';
 
 use Chuva\Php\WebScrapping\Scrapper;
 use PHPUnit\Framework\TestCase;
