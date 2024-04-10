@@ -53,5 +53,5 @@ jobs:
 
     - name: Configure PHPCS
       run: |
-        cd /../../php;
+        cd php;
         ./vendor/bin/phpunit --fail-on-warning --fail-on-notice  tests/Unit
