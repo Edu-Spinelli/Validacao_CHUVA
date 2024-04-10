@@ -21,5 +21,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "10.5.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false
+        }
     }
 }
