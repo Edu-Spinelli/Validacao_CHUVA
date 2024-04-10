@@ -13,12 +13,12 @@ jobs:
 
     - name: Installs composer
       run: |
-        cd php;
+        cd /../../php;
         composer install -n --prefer-dist
 
     - name: Run Psalm
       run: |
-        cd php;
+        cd /../../php;
         vendor/bin/psalm.phar --threads=2 --no-cache
 
   PHPlint:
@@ -28,17 +28,17 @@ jobs:
 
     - name: Installs composer
       run: |
-        cd php;
+        cd /../../php;
         composer install -n --prefer-dist
 
     - name: Configure PHPCS
       run: |
-        cd php;
+        cd /../../php;
         ./vendor/bin/phpcs --config-set installed_paths `$PWD`vendor/drupal/coder/coder_sniffer,vendor/sirbrillig/phpcs-variable-analysis,vendor/slevomat/coding-standard/
 
     - name: Run PHPCS
       run: |
-        cd php;
+        cd /../../php;
         vendor/bin/phpcs --standard=Drupal --ignore='*.md' --extensions=php,profile,inc,install src/
 
   PHPUnit:
@@ -48,10 +48,10 @@ jobs:
 
     - name: Installs composer
       run: |
-        cd php;
+        cd /../../php;
         composer install -n --prefer-dist
 
     - name: Configure PHPCS
       run: |
-        cd php;
+        cd /../../php;
         ./vendor/bin/phpunit --fail-on-warning --fail-on-notice  tests/Unit
