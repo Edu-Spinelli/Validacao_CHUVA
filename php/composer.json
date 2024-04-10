@@ -16,7 +16,8 @@
     "require": {
         "psalm/phar": "^4.7",
         "ext-zip": "*",
-        "box/spout": "3.3.0"
+        "box/spout": "3.3.0",
+        "drupal/coder": "8.3.x-dev"
     },
     "config": {
         "allow-plugins": {
@@ -24,7 +25,9 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "10.5.x-dev",
-        "overtrue/phplint": "^9.1@dev"
+        "phpunit/phpunit": "10.5.x-dev"
     }
+    
+   
+
 }
