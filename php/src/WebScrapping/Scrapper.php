@@ -66,7 +66,7 @@ class Scrapper
           // Adiciona as informações do autor ao vetor de autores deste artigo
           $autores_artigo[] = $info_autor;
         }
-
+        //att git
         // Adiciona o vetor de autores deste artigo ao vetor de autores geral
         $autores[] = $autores_artigo;
       }
